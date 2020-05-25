@@ -26,7 +26,7 @@ pipeline {
             agent any
             steps {
                 sh 'echo "Fail!";'//exit 1
-                sh './gradlew check'
+                sh './gradle check'
             }
             post{
                 always{
