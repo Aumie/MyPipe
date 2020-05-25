@@ -25,6 +25,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'echo "Fail!";'//exit 1
+                sh './gradlew check'
             }
         }
         stage('sqlte'){
@@ -48,6 +49,7 @@ pipeline {
     post {
         always {
             echo 'This will always run'
+            junit 'build/reports/**/*.xml'
         }
         success {
             echo 'This will run only if successful'
