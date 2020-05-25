@@ -24,8 +24,7 @@ pipeline {
                 }
             post{
                 success{
-                   archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-                     junit 'build/reports/**/*.xml'
+                   
                     
                 }
             }
@@ -38,7 +37,8 @@ pipeline {
             }
             post{
                 always{
-                    
+                    archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+                     junit 'build/reports/**/*.xml'
                 }
             }
         }
