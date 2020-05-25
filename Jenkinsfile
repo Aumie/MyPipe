@@ -22,12 +22,22 @@ pipeline {
                     sh './gradlew build'
                     
                 }
+            post{
+                success{
+                    archiveArtifacts 'target/*.hpi,target/*.jpi'
+                }
+            }
             }
         stage('Test') {
             steps {
                 sh './gradlew check'
                 sh 'echo "Fail!";'//exit 1
 
+            }
+            post{
+                always{
+                    junit '**/build_reports/**/*.xml'
+                }
             }
         }
         stage('sqlte'){
