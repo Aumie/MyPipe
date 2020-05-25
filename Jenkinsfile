@@ -26,12 +26,6 @@ pipeline {
             agent any
             steps {
                 sh 'echo "Fail!";'//exit 1
-                sh './gradlew check'
-            }
-            post{
-                always{
-                    junit 'build/reports/**/*.xml'
-                }
             }
         }
         stage('sqlte'){
