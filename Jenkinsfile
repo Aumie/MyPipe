@@ -24,7 +24,7 @@ pipeline {
                 }
             post{
                 success{
-                    archiveArtifacts 'target/*.hpi,target/*.jpi'
+                   archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
                 }
             }
             }
@@ -36,7 +36,8 @@ pipeline {
             }
             post{
                 always{
-                    junit '**/build_reports/**/*.xml'
+                     junit 'build/reports/**/*.xml'
+                    
                 }
             }
         }
@@ -61,8 +62,7 @@ pipeline {
     post {
         always {
             echo 'This will always run'
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-            junit 'build/reports/**/*.xml'
+            
         }
         success {
             echo 'This will run only if successful'
