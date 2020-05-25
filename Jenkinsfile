@@ -23,7 +23,7 @@ pipeline {
                 }
             }
         stage('Test') {
-            agent any
+            agent {docker{image 'gradle:6.4.1'}}
             steps {
                 sh 'echo "Fail!";'//exit 1
                 sh './gradle check'
