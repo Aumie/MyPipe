@@ -19,15 +19,12 @@ pipeline {
         stage('build') {
             steps {
                     sh 'python --version'
-                    sh './gradlew build'
                     
                 }
             }
         stage('Test') {
             steps {
-                sh './gradlew check'
                 sh 'echo "Fail!";'//exit 1
-
             }
         }
         stage('sqlte'){
@@ -40,7 +37,7 @@ pipeline {
                  DISABLE_AUTH = 'true'
                  DB_ENGINE    = 'sqlite'
              }
-
+             
             steps {
                 echo "Database engine is ${DB_ENGINE}"
                 echo "DISABLE_AUTH is ${DISABLE_AUTH}"
