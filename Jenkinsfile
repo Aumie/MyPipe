@@ -23,9 +23,9 @@ pipeline {
                     
                 }
             post{
-                success{
-                    archiveArtifacts 'target/*.hpi,target/*.jpi'
-                }
+//                success{
+//                    archiveArtifacts 'target/*.hpi,target/*.jpi'
+ //               }
             }
             }
         stage('Test') {
@@ -34,11 +34,11 @@ pipeline {
                 sh 'echo "Fail!";'//exit 1
 
             }
-            post{
-                always{
-                    junit '**/build_reports/**/*.xml'
-                }
-            }
+//            post{
+ //               always{
+//                    junit '**/build_reports/**/*.xml'
+//                }
+//            }
         }
         stage('sqlte'){
 
