@@ -23,7 +23,9 @@ pipeline {
                 }
             }
         stage('Test') {
-            agent any
+            agent {
+                label 'gradle'
+            }
             steps {
                 sh 'echo "Fail!";'//exit 1
                 sh './gradlew check'
