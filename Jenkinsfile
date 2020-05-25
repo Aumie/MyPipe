@@ -22,24 +22,12 @@ pipeline {
                     sh './gradlew build'
                     
                 }
-            post{
-                success{
-                   
-                    
-                }
-            }
             }
         stage('Test') {
             steps {
                 sh './gradlew check'
                 sh 'echo "Fail!";'//exit 1
 
-            }
-            post{
-                always{
-                    archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-                     junit 'build/reports/**/*.xml'
-                }
             }
         }
         stage('sqlte'){
@@ -63,7 +51,8 @@ pipeline {
     post {
         always {
             echo 'This will always run'
-            
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit 'build/reports/**/*.xml'
         }
         success {
             echo 'This will run only if successful'
